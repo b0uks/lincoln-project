@@ -37,7 +37,7 @@ def load_process_image(args):
     # make a check to see if median blurring should be done to remove
     # noise
     if args["preprocess2"] == "blur":
-        gray = cv2.medianBlur(gray, 3)
+        gray = cv2.medianBlur(gray, 5)
     # write the grayscale image to disk as a temporary file so we can
     # apply OCR to it
     filename = "{}.png".format(os.getpid())

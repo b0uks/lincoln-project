@@ -38,6 +38,7 @@ def stackImages(imgArray,scale,lables=[]):
                 cv2.putText(ver,lables[d][c],(eachImgWidth*c+10,eachImgHeight*d+20),cv2.FONT_HERSHEY_COMPLEX,0.7,(255,0,255),2)
     return ver
 
+
 def reorder(myPoints):
 
     myPoints = myPoints.reshape((4, 2))
@@ -58,13 +59,15 @@ def biggestContour(contours):
     max_area = 0
     for i in contours:
         area = cv2.contourArea(i)
-        if area > 5000:
+        if area > 500:
             peri = cv2.arcLength(i, True)
             approx = cv2.approxPolyDP(i, 0.02 * peri, True)
             if area > max_area and len(approx) == 4:
                 biggest = approx
                 max_area = area
     return biggest,max_area
+
+
 def drawRectangle(img,biggest,thickness):
     cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness)
     cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness)
@@ -73,8 +76,10 @@ def drawRectangle(img,biggest,thickness):
 
     return img
 
+
 def nothing(x):
     pass
+
 
 def initializeTrackbars(intialTracbarVals=0):
     cv2.namedWindow("Trackbars")

@@ -5,7 +5,7 @@ import utils as utlis
 
 ########################################################################
 webCamFeed = False
-pathImage = "rec3.jpg"
+pathImage = "27696.png"
 cap = cv2.VideoCapture(1)
 cap.set(10,160)
 heightImg = 640
@@ -22,12 +22,16 @@ while True:
     img = cv2.resize(img, (widthImg, heightImg)) # RESIZE IMAGE
     imgBlank = np.zeros((heightImg,widthImg, 3), np.uint8) # CREATE A BLANK IMAGE FOR TESTING DEBUGING IF REQUIRED
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # CONVERT IMAGE TO GRAY SCALE
-    imgBlur = cv2.GaussianBlur(imgGray, (5, 5), 1) # ADD GAUSSIAN BLUR
+    imgBlur1 = cv2.GaussianBlur(imgGray, (5, 5), 1) # ADD GAUSSIAN BLUR
+    imgBlur = cv2.medianBlur(imgBlur1, 3) # ADD MEDIAN BLUR
     thres=utlis.valTrackbars() # GET TRACK BAR VALUES FOR THRESHOLDS
     imgThreshold = cv2.Canny(imgBlur,thres[0],thres[1]) # APPLY CANNY BLUR
     kernel = np.ones((5, 5))
     imgDial = cv2.dilate(imgThreshold, kernel, iterations=2) # APPLY DILATION
     imgThreshold = cv2.erode(imgDial, kernel, iterations=1)  # APPLY EROSION
+
+
+
 
     ## FIND ALL COUNTOURS
     imgContours = img.copy() # COPY IMAGE FOR DISPLAY PURPOSES
