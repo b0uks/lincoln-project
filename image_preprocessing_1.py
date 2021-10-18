@@ -57,4 +57,8 @@ show_img(result)
 # cv2.imshow('thresh', thresh)
 # cv2.imshow('opening', opening)
 # cv2.imshow('result', result)
+
+filename = "post_process.png".format(os.getpid())
+cv2.imwrite(filename, result)
+
 cv2.waitKey()     

@@ -5,7 +5,7 @@ import utils as utlis
 
 ########################################################################
 webCamFeed = False
-pathImage = "27696.png"
+pathImage = "post_process.png"
 cap = cv2.VideoCapture(1)
 cap.set(10,160)
 heightImg = 640
